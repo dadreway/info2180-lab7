@@ -2,22 +2,19 @@
 var response;
 var button;
 var tochange;
-var query;
-var textfield;
 
 window.onload = function()
 {
     button = document.getElementById("lookup");
-    textfield = document.getElementById("country");
     tochange = document.getElementById("result");
-    query = textfield.value;
     button.addEventListener("click",fetchit);
     
 };
 
 function fetchit(){
+    var textfield = document.getElementById("country");
+    var query = textfield.value;
     var httprequest = new XMLHttpRequest;
-    
     httprequest.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
             response = this.responseText;
