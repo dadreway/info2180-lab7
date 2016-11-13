@@ -2,16 +2,20 @@
 var response;
 var button;
 var tochange;
+var check;
 
 window.onload = function()
 {
     button = document.getElementById("lookup");
+    check = document.getElementById("all");
     tochange = document.getElementById("result");
     button.addEventListener("click",fetchit);
     
 };
 
+
 function fetchit(){
+    var url;
     var textfield = document.getElementById("country");
     var query = textfield.value;
     var httprequest = new XMLHttpRequest;
@@ -23,10 +27,22 @@ function fetchit(){
         }
     };
     
-    httprequest.open("GET","world.php?country="+query, true);
+    if (check.value == true){
+        
+        url = "world.php?all=true";
+    }
+    else{
+        url = "world.php?country="+query;
+        
+    }
+    
+    httprequest.open("GET",url,true);
     httprequest.send("");
+    //httprequest.open("GET","world.php?country="+query, true);
+    //httprequest.send("");
     
 }
+
 
 function removeTags(text){
     var txt = text;
